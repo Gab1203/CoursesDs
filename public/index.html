@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso: Cadastre-se</title> 
+    <link rel="stylesheet" href="telaLogin.css">
+    
+</head>
+<body>
+    <div class="login-page">
+        <div class="form">
+          <form class="login-form">
+              <input type="text" placeholder="Gmail" id="gmail"/>
+              <input type="password" placeholder="Senha" id="senha"/>
+            <button type="submit">Criar</button>
+            <p class="message">Já se cadastrou? <a href="telaLogin.html">Faça o login</a></p>
+          </form>
+        </div>
+      </div>
+
+      <script>
+
+const form = document.querySelector('.login-form')
+const gmail = document.querySelector('#gmail')
+const senha = document.querySelector('#senha')
+
+
+form.addEventListener('submit', function(e){
+
+  e.preventDefault()
+  const formData = new FormData(e.target)
+  const data  = Object.fromEntries(formData.entries())
+  fetch('/index', {
+
+    method: 'POST', 
+    headers: {'Content-Type' : 'application/json'},
+    body: JSON.stringify(data)
+
+  })
+  .then(response => response.json())
+  
+  .then(data =>{
+    alert('Registros adicionados!')
+    
+  })
+
+})
+
+
+      </script>
+</body>
+</html>
+
